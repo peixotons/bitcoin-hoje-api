@@ -1,17 +1,17 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { IBitcoinService } from '../../domain/interfaces/bitcoin.service.interface';
+import { Injectable } from '@nestjs/common';
+import { IAlphaVantageService } from '../../infrastructure/alpha-vantage/interfaces/alpha-vantage.service.interface';
 import { BitcoinEntity } from '../../domain/entities/bitcoin.entity';
 
 @Injectable()
 export class GetBitcoinAnalysisUseCase {
     constructor(
-        private cryptoDataProvider: IBitcoinService
+        private readonly alphaVantageService: IAlphaVantageService
     ) { }
 
     /**
      * Executa a análise do Bitcoin
      */
     async execute(market: string = 'USD'): Promise<BitcoinEntity> {
-        return await this.cryptoDataProvider.getDigitalCurrencyDaily('BTC', market);
+        return await this.alphaVantageService.getDigitalCurrencyDaily('BTC', market);
     }
 }

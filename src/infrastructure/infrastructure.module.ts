@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AlphaVantageAdapter } from './alpha-vantage/alpha-vantage.adapter';
+import { AlphaVantageModule } from './alpha-vantage/alpha-vantage.module';
 
 @Module({
-    imports: [AlphaVantageAdapter],
-    exports: [AlphaVantageAdapter],
+    imports: [AlphaVantageModule],
+    exports: [AlphaVantageModule],
 })
 export class InfrastructureModule { } 

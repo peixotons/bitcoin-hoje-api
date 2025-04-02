@@ -10,6 +10,6 @@ export class BitcoinController {
 
     @Get()
     async getBitcoinAnalysis(@Query('market') market?: string): Promise<BitcoinEntity> {
-        return this.getBitcoinAnalysisUseCase.execute(market);
+        return this.getBitcoinAnalysisUseCase.execute();
     }
 } 

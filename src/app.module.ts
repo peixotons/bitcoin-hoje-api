@@ -3,6 +3,8 @@ import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { DomainModule } from './domain/domain.module';
 import { ApplicationModule } from './application/application.module';
 import { PresentationModule } from './presentation/presentation.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -10,6 +12,10 @@ import { PresentationModule } from './presentation/presentation.module';
     InfrastructureModule,
     ApplicationModule,
     PresentationModule,
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
+    ScheduleModule.forRoot()
   ],
 })
 export class AppModule { }
