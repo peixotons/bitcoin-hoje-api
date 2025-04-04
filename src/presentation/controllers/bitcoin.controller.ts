@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { GetBitcoinAnalysisUseCase } from '../../application/use-cases/get-bitcoin-analysis.use-case';
 import { BitcoinEntity } from '../../domain/entities/bitcoin.entity';
 
@@ -9,7 +9,7 @@ export class BitcoinController {
     ) { }
 
     @Get()
-    async getBitcoinAnalysis(@Query('market') market?: string): Promise<BitcoinEntity> {
+    async getBitcoinAnalysis(): Promise<BitcoinEntity> {
         return this.getBitcoinAnalysisUseCase.execute();
     }
 } 
