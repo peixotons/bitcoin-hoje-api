@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Module, OnModuleInit } from '@nestjs/common';
 import { PresentationModule } from './presentation/presentation.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ConfigModule } from '@nestjs/config';
+import { collectDefaultMetrics, register } from 'prom-client';
 
 @Module({
   imports: [
@@ -12,4 +13,8 @@ import { ConfigModule } from '@nestjs/config';
     ScheduleModule.forRoot()
   ],
 })
-export class AppModule { }
+export class AppModule implements OnModuleInit {
+  onModuleInit() {
+    collectDefaultMetrics({ register });
+  }
+}
