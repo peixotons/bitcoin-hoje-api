@@ -1,0 +1,24 @@
+services:
+  api:
+    build: .
+    container_name: api
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - api
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    depends_on:
+      - prometheus

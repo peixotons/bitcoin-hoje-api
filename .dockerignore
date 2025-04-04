@@ -1,0 +1,23 @@
+# Ignorar node_modules (serão instalados dentro do container)
+node_modules
+
+# Ignorar logs e arquivos temporários
+npm-debug.log
+yarn-error.log
+
+# Ignorar arquivos de ambiente
+.env
+.env.local
+.env.*.local
+
+# Ignorar arquivos e pastas de controle de versão
+.git
+.gitignore
+
+# Ignorar pastas de build, se aplicável (para não copiar builds antigos)
+dist
+
+# Outros arquivos que não precisam ir para o container
+coverage
+logs
+.DS_Store
