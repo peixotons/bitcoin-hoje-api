@@ -3,12 +3,15 @@ import { IAlphaVantageService } from '../../infrastructure/alpha-vantage/interfa
 import { IAlternativeService } from 'src/infrastructure/alternative/interfaces/alternative.interface';
 import { BitcoinResponseDTO } from 'src/dto/bitcoin/bitcoin-response.dto';
 import { processHistoricalData } from 'src/infrastructure/shared/process-bitcoin-data.mapper';
+import { IRedisService } from 'src/infrastructure/redis/interfaces/redis.service.interface';
 
 @Injectable()
 export class GetBitcoinAnalysisUseCase {
     constructor(
         private readonly alphaVantageService: IAlphaVantageService,
-        private readonly alternativeService: IAlternativeService
+        private readonly alternativeService: IAlternativeService,
+        private readonly redisService: IRedisService
+
     ) { }
 
     async execute(market: string = 'USD'): Promise<BitcoinResponseDTO> {
@@ -27,10 +30,23 @@ export class GetBitcoinAnalysisUseCase {
             30
         );
 
+        await this.redisService.set('crypto:bitcoin', JSON.stringify({
+            currentData: {
+                price: currentPrice,
+                mayerMultiple,
+                fearAndGreedIndex: fearAndGreed
+            },
+            historicalData
+        }), 86400);
+
         return {
             currentData: {
                 price: currentPrice,
                 mayerMultiple,
+                mayerMultipleStats: {
+                    min: 0.51,
+                    max: 2.77
+                },
                 fearAndGreedIndex: fearAndGreed
             },
             historicalData

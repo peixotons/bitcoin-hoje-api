@@ -36,6 +36,13 @@ export class AlphaVantageService implements IAlphaVantageService {
         }
     }
 
+
+    /**
+    * Busca o histórico diário de uma moeda digital (ex: BTC)
+    *
+    * @param time_period
+    * @returns Dados retornados pela API
+    */
     async getSimpleMoveAverage(time_period: number): Promise<any> {
         const params = {
             function: 'SMA',

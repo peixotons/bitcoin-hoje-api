@@ -1,3 +1,13 @@
+export interface BitcoinCurrentData {
+    price: number;
+    mayerMultiple: number;
+    mayerMultipleStats: {
+        min: number;
+        max: number;
+    };
+    fearAndGreedIndex: object;
+}
+
 export interface BitcoinHistoricalData {
     date: string;
     price: number;
@@ -7,10 +17,6 @@ export interface BitcoinHistoricalData {
 }
 
 export interface BitcoinResponseDTO {
-    currentData: {
-        price: number;
-        mayerMultiple: number;
-        fearAndGreedIndex: object;
-    };
+    currentData: BitcoinCurrentData;
     historicalData: BitcoinHistoricalData[];
 }
