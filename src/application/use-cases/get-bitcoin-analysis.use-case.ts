@@ -7,10 +7,7 @@ export class GetBitcoinAnalysisUseCase {
     constructor(
         private readonly alphaVantageService: IAlphaVantageService
     ) { }
-
-    /**
-     * Executa a análise do Bitcoin
-     */
+    
     async execute(market: string = 'USD'): Promise<BitcoinEntity> {
         return await this.alphaVantageService.getDigitalCurrencyDaily('BTC', market);
     }
