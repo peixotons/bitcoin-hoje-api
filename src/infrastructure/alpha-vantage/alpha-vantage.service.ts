@@ -35,4 +35,24 @@ export class AlphaVantageService implements IAlphaVantageService {
             );
         }
     }
+
+    async getSimpleMoveAverage(time_period: number): Promise<any> {
+        const params = {
+            function: 'SMA',
+            symbol: 'BTCUSD',
+            interval: 'daily',
+            time_period,
+            series_type: 'close',
+            apikey: this.API_KEY
+        };
+        try {
+            const response = await lastValueFrom(this.httpService.get('', { params }));
+            return response.data
+        } catch (error) {
+            throw new HttpException(
+                `Erro ao buscar dados da Alpha Vantage: ${error.message}`,
+                HttpStatus.INTERNAL_SERVER_ERROR,
+            );
+        }
+    }
 }
