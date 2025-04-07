@@ -56,13 +56,11 @@ services:
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./frontend-build:/usr/share/nginx/html:ro
     restart: unless-stopped
     depends_on:
       - api
     networks:
       - bitcoin-hoje-network
-
 
 networks:
   bitcoin-hoje-network:
