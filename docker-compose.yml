@@ -55,7 +55,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    - /etc/letsencrypt/live/bitcoinhoje.site:/etc/letsencrypt/live/bitcoinhoje.site:ro
+    - /etc/letsencrypt/archive/bitcoinhoje.site:/etc/letsencrypt/archive/bitcoinhoje.site:ro
     restart: unless-stopped
     depends_on:
       - api
