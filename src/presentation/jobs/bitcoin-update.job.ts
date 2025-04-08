@@ -8,7 +8,7 @@ export class BitcoinUpdateJob {
         private readonly getBitcoinAnalysisUseCase: GetBitcoinAnalysisUseCase
     ) { }
 
-    @Cron(CronExpression.EVERY_12_HOURS)
+    @Cron(CronExpression.EVERY_6_HOURS)
     async handleCron() {
         console.log('Updating Bitcoin data...');
         try {
