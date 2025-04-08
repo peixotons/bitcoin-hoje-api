@@ -7,7 +7,7 @@ export class GetRedisDataUseCase {
         private readonly redisService: IRedisService
     ) { }
 
-    async execute(symbol: 'bitcoin'): Promise<any> {
-        return await this.redisService.get(`crypto:${symbol}`)
+    async execute(): Promise<any> {
+        return await this.redisService.get('crypto:bitcoin')
     }
 }

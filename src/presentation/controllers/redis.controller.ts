@@ -11,7 +11,7 @@ export class RedisController {
 
     @Get()
     @UseGuards(SimpleTokenGuard)
-    async getRedisData(symbol: 'bitcoin'): Promise<BitcoinResponseDTO> {
-        return this.getRedisDataUseCase.execute(symbol);
+    async getRedisData(): Promise<BitcoinResponseDTO> {
+        return this.getRedisDataUseCase.execute();
     }
 } 

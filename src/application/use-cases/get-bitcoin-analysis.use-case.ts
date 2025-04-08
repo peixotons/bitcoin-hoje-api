@@ -34,6 +34,10 @@ export class GetBitcoinAnalysisUseCase {
             currentData: {
                 price: currentPrice,
                 mayerMultiple,
+                mayerMultipleStats: {
+                    min: 0.51,
+                    max: 2.77
+                },
                 fearAndGreedIndex: fearAndGreed
             },
             historicalData

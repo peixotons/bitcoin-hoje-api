@@ -1,0 +1,25 @@
+name: Deploy para VPS
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Ação para Deploy via SSH
+      uses: appleboy/ssh-action@v1.2.2
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd ~/projects/bitcoin-hoje-api
+          git fetch
+          git status
+          git pull origin master
+          docker-compose down
+          docker-compose up -d --build
